@@ -1,0 +1,4 @@
+repository "Unity-SharedSpatialAnchors@anepom3@cloud"
+  path "/"
+    smartbranch "/main/HandGestures" 
+     
