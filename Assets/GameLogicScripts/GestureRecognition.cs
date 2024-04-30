@@ -15,6 +15,8 @@ public class GestureRecognition : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI[] gestureTexts = new TextMeshProUGUI[6];
 
+    [SerializeField] RoomAffluence RoomAffluence;
+
     private void Start()
     {
         gestureTexts[0] = leftGestureText;
@@ -88,19 +90,30 @@ public class GestureRecognition : MonoBehaviour
 
     private bool CheckForAgreement()
     {
-        if (leftGestureText.text == rightGestureText.text)
+        if (leftGestureText.text == rightGestureText.text  && leftGestureText.text != "" && rightGestureText.text != "")
         {
             agreementText.text = "Agreement";
             return true;
         }
         else
         {
+            ClearTexts(false);
+            return false;
+        }
+    }
+
+    private void ClearTexts(bool fullClear)
+    {
             agreementText.text = "";
             gestureTexts[3].text = "";
             gestureTexts[4].text = "";
             gestureTexts[5].text = "";
-            return false;
-        }
+            if (fullClear)
+            {
+                gestureTexts[0].text = "";
+                gestureTexts[1].text = "";
+                gestureTexts[2].text = "";
+            }
     }
 
     private void CheckForConfirmation()
@@ -110,6 +123,8 @@ public class GestureRecognition : MonoBehaviour
         {
             Debug.Log("Confirmation Entered");
             confirmationText.text = "Confirmation";
+            RoomAffluence.SetAffluence();
+            ClearTexts(true);
         }
     }
 }
