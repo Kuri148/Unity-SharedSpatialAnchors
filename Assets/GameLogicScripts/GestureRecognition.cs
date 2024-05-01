@@ -16,6 +16,7 @@ public class GestureRecognition : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] gestureTexts = new TextMeshProUGUI[6];
 
     [SerializeField] RoomAffluence RoomAffluence;
+    [SerializeField] HyperCanvasCollection HyperCanvasCollection;
 
     private void Start()
     {
@@ -125,6 +126,7 @@ public class GestureRecognition : MonoBehaviour
             confirmationText.text = "Confirmation";
             RoomAffluence.SetAffluence();
             ClearTexts(true);
+            HyperCanvasCollection.DemandHideCanvas();
         }
     }
 }
