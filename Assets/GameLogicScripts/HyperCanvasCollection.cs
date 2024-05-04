@@ -5,14 +5,31 @@ using UnityEngine.Experimental.Rendering;
 
 public class HyperCanvasCollection : MonoBehaviour
 {
-    public bool isRoundFinished = true;
+    private bool _isDuringRound = false;
     public int topic;
-    public bool isDifferent;
+    private bool isDifferent;
     public int firstCanvas;
     public int secondCanvas;
     int currentRound = 0;
 
     [SerializeField] List<HyperCanvas> _hyperCanvases = new List<HyperCanvas>();
+
+    
+    public bool GetIsDifferent()
+    {
+        return isDifferent;
+    }
+
+    public void SetIsDuringRound(bool value)
+    {
+        _isDuringRound = value;
+    }
+
+    public bool GetIsDuringRound()
+    {
+        return _isDuringRound;
+    }   
+    
     void Start()
     {
         //add all children to list
@@ -29,7 +46,7 @@ public class HyperCanvasCollection : MonoBehaviour
 
     public void PrepareCanvas()
     {
-        if (isRoundFinished)
+        if (!_isDuringRound)
             topic = Random.Range(0, _hyperCanvases.Count);
             isDifferent = Random.Range(0, 2) == 0;
             firstCanvas = Random.Range(0, 4);
@@ -51,7 +68,7 @@ public class HyperCanvasCollection : MonoBehaviour
     }
     public void DemandShowCanvas()
     {
-        if (isRoundFinished)
+        if (!_isDuringRound)
         {
             _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
             if (isDifferent)
@@ -59,13 +76,13 @@ public class HyperCanvasCollection : MonoBehaviour
                 _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
             }
         }
-        isRoundFinished = false;
+        _isDuringRound = true;
     }
 
         public void DemandHideCanvas()
         {
-            Debug.Log("DemandHideCanvas");
-            if (!isRoundFinished)
+            Debug.Log("DemandHideCanvas " + topic + " " + firstCanvas + " " + secondCanvas);
+            if (_isDuringRound == false)
             {
                 Debug.Log("DemandHideCanvas entered");
                 _hyperCanvases[topic].HideCanvas(firstCanvas, false);
@@ -74,6 +91,5 @@ public class HyperCanvasCollection : MonoBehaviour
                     _hyperCanvases[topic].HideCanvas(secondCanvas, true);
                 }
             }
-            isRoundFinished = true;
         }
 }

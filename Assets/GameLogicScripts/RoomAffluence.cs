@@ -40,9 +40,16 @@ public class RoomAffluence : MonoBehaviour, IAffluenceSubject
         }
     }
 
-    public void SetAffluence()
+    public void SetAffluence(bool isPositive)
     {
-        _affluence++;
+        if (isPositive)
+        {
+            _affluence++;
+        }
+        else
+        {
+            _affluence--;
+        }
         NotifyObservers();
     }
 }

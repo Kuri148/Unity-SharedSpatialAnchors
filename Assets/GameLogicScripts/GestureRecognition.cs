@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Oculus.Interaction.Input;
+using ExitGames.Client.Photon.StructWrapping;
 
 public class GestureRecognition : MonoBehaviour
 {
@@ -12,11 +14,17 @@ public class GestureRecognition : MonoBehaviour
     [SerializeField] TextMeshProUGUI leftConfirmationText;
     [SerializeField] TextMeshProUGUI rightConfirmationText;
     [SerializeField] TextMeshProUGUI confirmationText;
+    [SerializeField] TextMeshProUGUI leftOneMoreTimeText;
+    [SerializeField] TextMeshProUGUI rightOneMoreTimeText;
+    [SerializeField] TextMeshProUGUI correctIncorrectText;
 
-    [SerializeField] TextMeshProUGUI[] gestureTexts = new TextMeshProUGUI[6];
+    [SerializeField] TextMeshProUGUI[] gestureTexts = new TextMeshProUGUI[9];
 
     [SerializeField] RoomAffluence RoomAffluence;
     [SerializeField] HyperCanvasCollection HyperCanvasCollection;
+
+
+    [SerializeField] bool playersSayCanvasesAreDifferent;
 
     private void Start()
     {
@@ -26,18 +34,57 @@ public class GestureRecognition : MonoBehaviour
         gestureTexts[3] = leftConfirmationText;
         gestureTexts[4] = rightConfirmationText;
         gestureTexts[5] = confirmationText;
+        gestureTexts[6] = leftOneMoreTimeText;
+        gestureTexts[7] = rightOneMoreTimeText;
+        gestureTexts[8] = correctIncorrectText;
+        HyperCanvasCollection.PrepareCanvas();
+        HyperCanvasCollection.DemandShowCanvas();
+    }
+
+    public void RightOneMoreTime()
+    {
+        if (HyperCanvasCollection.GetIsDuringRound() == false)
+        {
+            ChangeText(7, "One More");
+        }
+        Debug.Log("OneMoreTimeRight");
+        if (CheckForOneMore())
+        {
+            Debug.Log("OneMoreTimeRightEntered");
+            ClearTexts(true);
+            HyperCanvasCollection.DemandHideCanvas();
+            HyperCanvasCollection.PrepareCanvas();
+            HyperCanvasCollection.DemandShowCanvas();
+        }
 
     }
+    public void LeftOneMoreTime()
+    {
+        if (HyperCanvasCollection.GetIsDuringRound() == false)
+        {
+            ChangeText(6, "One More");
+        }
+        Debug.Log("OneMoreTimeLeft");
+        if (CheckForOneMore())
+        {
+            Debug.Log("OneMoreTimeLeftEntered");
+            HyperCanvasCollection.DemandHideCanvas();
+            HyperCanvasCollection.PrepareCanvas();
+            HyperCanvasCollection.DemandShowCanvas();
+            ClearTexts(true);
+        }
+    }
+
     public void LeftBunny()
     {
         //Debug.Log("LeftBunny");
-        ChangeText(0, "Bunny");
+        //ChangeText(0, "Bunny");
     }
 
     public void RightBunny()
     {
         //Debug.Log("RightBunny");
-        ChangeText(1, "Bunny");
+        //ChangeText(1, "Bunny");
     }
 
     public void LeftThumbsUp()
@@ -76,10 +123,10 @@ public class GestureRecognition : MonoBehaviour
         ChangeText(3, "Ok");
     }
     //left is 0. right is 1. agreement is 2. left confirmation is 3. right confirmation is 4. total confirmation is 5.
-    public void ChangeText(int textIndex, string newText)
+    private void ChangeText(int textIndex, string newText)
     {
         //Debug.Log("ChangeText");
-        if (textIndex > 2 && CheckForAgreement())
+        if ((textIndex == 3 || textIndex == 4) && CheckForAgreement() && HyperCanvasCollection.GetIsDuringRound() == true)
         {
             gestureTexts[textIndex].text = newText;
             CheckForConfirmation();
@@ -87,6 +134,18 @@ public class GestureRecognition : MonoBehaviour
         }
         gestureTexts[textIndex].text = newText;
         CheckForAgreement();
+    }
+
+    private bool CheckForOneMore()
+    {
+        if (leftOneMoreTimeText.text == rightOneMoreTimeText.text && leftOneMoreTimeText.text != "" && rightOneMoreTimeText.text != "")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private bool CheckForAgreement()
@@ -114,6 +173,9 @@ public class GestureRecognition : MonoBehaviour
                 gestureTexts[0].text = "";
                 gestureTexts[1].text = "";
                 gestureTexts[2].text = "";
+                gestureTexts[6].text = "";
+                gestureTexts[7].text = "";
+                gestureTexts[8].text = "";
             }
     }
 
@@ -124,9 +186,39 @@ public class GestureRecognition : MonoBehaviour
         {
             Debug.Log("Confirmation Entered");
             confirmationText.text = "Confirmation";
-            RoomAffluence.SetAffluence();
-            ClearTexts(true);
-            HyperCanvasCollection.DemandHideCanvas();
+            HyperCanvasCollection.SetIsDuringRound(false);
+            DefinePlayersSayCanvasesAreDifferent();
+            CheckForCorrectness();
         }
+    }
+
+    private void DefinePlayersSayCanvasesAreDifferent()
+    {
+        if (leftGestureText.text == "Thumbs Down")
+        {
+            playersSayCanvasesAreDifferent = true;
+        }
+        else
+        {
+            playersSayCanvasesAreDifferent = false;
+        }
+    }
+
+    private void CheckForCorrectness()
+    {
+        bool johnnyTheyDidIt = false;
+        if (playersSayCanvasesAreDifferent == HyperCanvasCollection.GetIsDifferent())
+        {
+            Debug.Log("Correct");
+            correctIncorrectText.text = "Correct";
+            johnnyTheyDidIt = true;
+        }
+        else
+        {
+            Debug.Log("Incorrect");
+            correctIncorrectText.text = "Incorrect";
+            johnnyTheyDidIt = false;
+        }
+        RoomAffluence.SetAffluence(johnnyTheyDidIt);
     }
 }

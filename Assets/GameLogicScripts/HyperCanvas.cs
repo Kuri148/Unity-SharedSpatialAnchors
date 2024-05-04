@@ -19,7 +19,7 @@ public class HyperCanvas : MonoBehaviour
     {
         if (isSecond)
         {
-            _pages[index].transform.position += new Vector3(0, 5, 0);
+            _pages[index].transform.position += new Vector3(0, 2, 0);
         }
         _pages[index].SetActive(true);
     }
@@ -29,7 +29,7 @@ public class HyperCanvas : MonoBehaviour
         if (isSecond)
         {
             Debug.Log("Hiding second canvas");
-            _pages[index].transform.position -= new Vector3(0, 5, 0);
+            _pages[index].transform.position -= new Vector3(0, 2, 0);
         }
         _pages[index].SetActive(false);
     }
