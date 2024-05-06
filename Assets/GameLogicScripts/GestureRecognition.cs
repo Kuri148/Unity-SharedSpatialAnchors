@@ -5,8 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 using Oculus.Interaction.Input;
 using ExitGames.Client.Photon.StructWrapping;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Runtime.CompilerServices;
 
-public class GestureRecognition : MonoBehaviour
+public class GestureRecognition : MonoBehaviourPun
 {
     [SerializeField] TextMeshProUGUI leftGestureText;
     [SerializeField] TextMeshProUGUI rightGestureText;
@@ -25,6 +28,8 @@ public class GestureRecognition : MonoBehaviour
 
 
     [SerializeField] bool playersSayCanvasesAreDifferent;
+
+    [SerializeField] GameObject NetworkCapsule;
 
     private void Start()
     {
@@ -93,10 +98,25 @@ public class GestureRecognition : MonoBehaviour
         ChangeText(0, "Thumbs Up");
     }
 
+
     public void RightThumbsUp()
     {
         //Debug.Log("RightThumbsUp");
         ChangeText(1, "Thumbs Up");
+        ShowNetworkCapsuleRPC();
+    }
+
+    [PunRPC]
+    void ShowNetworkCapsule()
+    {
+        NetworkCapsule.SetActive(true);
+        Debug.Log("NetworkCapsuleShown");
+    }
+
+    public void ShowNetworkCapsuleRPC()
+    {
+        photonView.RPC("ShowNetworkCapsule", RpcTarget.All);
+        Debug.Log("ShowNetworkCapsuleRPC");
     }
 
     public void LeftThumbsDown()
