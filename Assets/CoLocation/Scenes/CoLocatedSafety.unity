@@ -7281,6 +7281,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7008462844292929554, guid: 64b32e9c793b1d246b2dbe51a68b05a3, type: 3}
+      propertyPath: NetworkCapsule
+      value: 
+      objectReference: {fileID: 1857163071}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7607605111556710190, guid: 64b32e9c793b1d246b2dbe51a68b05a3, type: 3}
@@ -8152,7 +8156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1857163072
 MonoBehaviour:
   m_ObjectHideFlags: 0
