@@ -234,6 +234,15 @@ public class GestureRecognition : MonoBehaviourPun
             Debug.Log("Correct");
             correctIncorrectText.text = "Correct";
             johnnyTheyDidIt = true;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("MasterClientEntered");
+            }
+            else
+            {
+                Debug.Log("NotMasterClientEntered");
+            }
+
         }
         else
         {
