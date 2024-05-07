@@ -29,8 +29,10 @@ public class GestureRecognition : MonoBehaviourPun
 
     [SerializeField] bool playersSayCanvasesAreDifferent;
 
-    [SerializeField] GameObject NetworkCapsule;
+    public GameObject NetworkCapsule;
 
+    public PhotonView gesturePhotonView;
+ 
     private void Start()
     {
         gestureTexts[0] = leftGestureText;
@@ -107,7 +109,7 @@ public class GestureRecognition : MonoBehaviourPun
     }
 
     [PunRPC]
-    void ShowNetworkCapsule()
+    public void ShowNetworkCapsule()
     {
         NetworkCapsule.SetActive(true);
         Debug.Log("NetworkCapsuleShown");
@@ -115,7 +117,7 @@ public class GestureRecognition : MonoBehaviourPun
 
     public void ShowNetworkCapsuleRPC()
     {
-        photonView.RPC("ShowNetworkCapsule", RpcTarget.All);
+        gesturePhotonView.RPC("ShowNetworkCapsule", RpcTarget.All);
         Debug.Log("ShowNetworkCapsuleRPC");
     }
 
