@@ -28,6 +28,9 @@ public class GestureRecognition : MonoBehaviourPun
 
 
     [SerializeField] bool playersSayCanvasesAreDifferent;
+    [SerializeField] bool masterClientWantsToStart = false;
+    [SerializeField] bool clientWantsToStart = false;
+    [SerializeField] bool twoPlayersPresent = false;
 
     public GameObject NetworkCapsule;
 
@@ -44,8 +47,24 @@ public class GestureRecognition : MonoBehaviourPun
         gestureTexts[6] = leftOneMoreTimeText;
         gestureTexts[7] = rightOneMoreTimeText;
         gestureTexts[8] = correctIncorrectText;
-        HyperCanvasCollection.PrepareCanvas();
-        HyperCanvasCollection.DemandShowCanvas();
+    }
+
+    public void MasterClientEntered()
+    {
+        Debug.Log("MasterClient has Entered");
+        masterClientWantsToStart = true;
+    }
+
+    public void NotMasterClientEntered()
+    {
+        Debug.Log("NOTMasterClient has Entered");
+        clientWantsToStart = true;
+    }
+
+    private void CheckIfBothPeopleWantToStart()
+    {
+        if (masterClientWantsToStart && clientWantsToStart) twoPlayersPresent = true;
+        Debug.Log("Both players are present =" + twoPlayersPresent);
     }
 
     public void RightOneMoreTime()
@@ -84,28 +103,68 @@ public class GestureRecognition : MonoBehaviourPun
 
     public void LeftBunny()
     {
-        //Debug.Log("LeftBunny");
-        //ChangeText(0, "Bunny");
+        //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
+        if (twoPlayersPresent)
+        {
+            return;
+        }
+        if (PhotonNetwork.IsMasterClient)
+        {
+            gesturePhotonView.RPC("MasterClientLetsGoRPC", RpcTarget.All);
+            Debug.Log("MasterClientWantsToStart");
+        }
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            gesturePhotonView.RPC("ClientLetsGoRPC", RpcTarget.All);
+            Debug.Log("ClientWantsToStart");
+        }
+        if (masterClientWantsToStart && clientWantsToStart)
+        {
+            gesturePhotonView.RPC("BothPlayersPresentRPC", RpcTarget.All);
+            HyperCanvasCollection.PrepareCanvas();
+            HyperCanvasCollection.DemandShowCanvas();
+        }
+    }
+
+    [PunRPC]
+    public void MasterClientLetsGoRPC()
+    {
+        masterClientWantsToStart = true;
+    }
+
+    [PunRPC]
+    public void ClientLetsGoRPC()
+    {
+        clientWantsToStart = true;
+    }
+
+    [PunRPC]
+    public void BothPlayersPresentRPC()
+    {
+        twoPlayersPresent = true;
     }
 
     public void RightBunny()
     {
-        //Debug.Log("RightBunny");
-        //ChangeText(1, "Bunny");
+        LeftBunny();
     }
 
     public void LeftThumbsUp()
     {
-        //Debug.Log("LeftThumbsUp");
-        ChangeText(0, "Thumbs Up");
+        if(twoPlayersPresent)
+        {
+            ChangeText(0, "Thumbs Up");
+        }
     }
 
 
     public void RightThumbsUp()
     {
-        //Debug.Log("RightThumbsUp");
-        ChangeText(1, "Thumbs Up");
-        ShowNetworkCapsuleRPC();
+        if(twoPlayersPresent)
+        {
+            ChangeText(1, "Thumbs Up");
+            ShowNetworkCapsuleRPC();
+        }
     }
 
     [PunRPC]
@@ -123,26 +182,34 @@ public class GestureRecognition : MonoBehaviourPun
 
     public void LeftThumbsDown()
     {
-        //Debug.Log("LeftThumbsDown");
-        ChangeText(0, "Thumbs Down");
+        if(twoPlayersPresent)
+        {
+            ChangeText(0, "Thumbs Down");
+        }
     }
 
     public void RightThumbsDown()
     {
-        //Debug.Log("RightThumbsDown");
-        ChangeText(1, "Thumbs Down");
+        if(twoPlayersPresent)
+        {
+            ChangeText(1, "Thumbs Down");
+        }
     }
 
     public void RightOk()
     {
-        //Debug.Log("RightOk");
-        ChangeText(4, "Ok");
+        if(twoPlayersPresent)
+        {
+            ChangeText(4, "Ok");
+        }
     }
 
     public void LeftOk()
     {
-        //Debug.Log("LeftOk");
+        if(twoPlayersPresent)
+        {
         ChangeText(3, "Ok");
+        }
     }
     //left is 0. right is 1. agreement is 2. left confirmation is 3. right confirmation is 4. total confirmation is 5.
     private void ChangeText(int textIndex, string newText)
