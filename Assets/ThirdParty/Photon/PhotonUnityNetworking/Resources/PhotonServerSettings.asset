@@ -50,6 +50,9 @@ MonoBehaviour:
   - CheckForLocalAnchors
   - OnColocatedAck
   - ShowNetworkCapsule
+  - BothPlayersPresentRPC
+  - ClientLetsGoRPC
+  - MasterClientLetsGoRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
