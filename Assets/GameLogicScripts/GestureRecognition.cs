@@ -28,13 +28,21 @@ public class GestureRecognition : MonoBehaviourPun
 
 
     [SerializeField] bool playersSayCanvasesAreDifferent;
+    
+    
     [SerializeField] bool masterClientWantsToStart = false;
     [SerializeField] bool clientWantsToStart = false;
     [SerializeField] bool twoPlayersPresent = false;
 
+    [SerializeField] bool nextRoundConsentGiven = false;
+    [SerializeField] bool nextRoundClientConsent = false;
+    [SerializeField] bool nextRoundMasterConsent = false;
+    
+    
     public GameObject NetworkCapsule;
 
     public PhotonView gesturePhotonView;
+    public PhotonView hypercavasPhotonView;
  
     private void Start()
     {
@@ -49,24 +57,14 @@ public class GestureRecognition : MonoBehaviourPun
         gestureTexts[8] = correctIncorrectText;
     }
 
-    public void MasterClientEntered()
-    {
-        Debug.Log("MasterClient has Entered");
-        masterClientWantsToStart = true;
-    }
-
-    public void NotMasterClientEntered()
-    {
-        Debug.Log("NOTMasterClient has Entered");
-        clientWantsToStart = true;
-    }
-
-    private void CheckIfBothPeopleWantToStart()
-    {
-        if (masterClientWantsToStart && clientWantsToStart) twoPlayersPresent = true;
-        Debug.Log("Both players are present =" + twoPlayersPresent);
-    }
-
+/// <summary>
+/// When your brain isn't shit, come back here and start adjusting the PunRPCs again.  You need to reduce the gesture inputs to one functions that checks if they are
+/// master within the that function and assigns them a panel on the right side of the left side.  Then when the text changes, you will need to make an RPC for each of those
+/// perhaps you can just replace the original function with an RPC.  Then you will have to add a final RPC to the Affluence script, and a photon viwew to it's home object
+/// so you can keep that number synced up.  Nice job today.  We wrote a lot of shit code, but you pushed through it.  May 8th Peter is rooting for you.  Long live the
+/// PG hivemind.  After that you can start poking at the collocation stuff when we finally get permission, or beautifying the UI into mesh, and populating the affluence
+/// markers.  After that, sound and particle effects if we get the time.
+/// </summary>
     public void RightOneMoreTime()
     {
         if (HyperCanvasCollection.GetIsDuringRound() == false)
@@ -80,7 +78,6 @@ public class GestureRecognition : MonoBehaviourPun
             ClearTexts(true);
             HyperCanvasCollection.DemandHideCanvas();
             HyperCanvasCollection.PrepareCanvas();
-            HyperCanvasCollection.DemandShowCanvas();
         }
 
     }
@@ -101,6 +98,52 @@ public class GestureRecognition : MonoBehaviourPun
         }
     }
 
+        public void OneMoreTime()
+        {
+            //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
+            if (nextRoundConsentGiven)
+            {
+                return;
+            }
+            if (PhotonNetwork.IsMasterClient)
+            {
+                gesturePhotonView.RPC("MasterConsent", RpcTarget.All);
+                Debug.Log("MasterClientWantsAgain");
+            }
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                gesturePhotonView.RPC("ClientConsent", RpcTarget.All);
+                Debug.Log("ClientWantsAgain");
+            }
+            if (nextRoundMasterConsent && nextRoundClientConsent)
+            {
+                gesturePhotonView.RPC("BothPlayersConsentRPC", RpcTarget.All);
+                HyperCanvasCollection.PrepareCanvas();
+            }
+        }
+
+    [PunRPC]
+    public void MasterConsent()
+    {
+        nextRoundMasterConsent = true;
+    }
+
+    [PunRPC]
+    public void ClientConsent()
+    {
+        nextRoundClientConsent = true;
+    }
+
+    [PunRPC]
+    public void BothPlayersConsentRPC()
+    {
+        nextRoundConsentGiven = true;
+    }
+
+    public void RightBunny()
+    {
+        LeftBunny();
+    }
     public void LeftBunny()
     {
         //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
@@ -122,7 +165,6 @@ public class GestureRecognition : MonoBehaviourPun
         {
             gesturePhotonView.RPC("BothPlayersPresentRPC", RpcTarget.All);
             HyperCanvasCollection.PrepareCanvas();
-            HyperCanvasCollection.DemandShowCanvas();
         }
     }
 
@@ -144,10 +186,6 @@ public class GestureRecognition : MonoBehaviourPun
         twoPlayersPresent = true;
     }
 
-    public void RightBunny()
-    {
-        LeftBunny();
-    }
 
     public void LeftThumbsUp()
     {
@@ -156,7 +194,6 @@ public class GestureRecognition : MonoBehaviourPun
             ChangeText(0, "Thumbs Up");
         }
     }
-
 
     public void RightThumbsUp()
     {
@@ -301,15 +338,6 @@ public class GestureRecognition : MonoBehaviourPun
             Debug.Log("Correct");
             correctIncorrectText.text = "Correct";
             johnnyTheyDidIt = true;
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log("MasterClientEntered");
-            }
-            else
-            {
-                Debug.Log("NotMasterClientEntered");
-            }
-
         }
         else
         {
@@ -318,5 +346,7 @@ public class GestureRecognition : MonoBehaviourPun
             johnnyTheyDidIt = false;
         }
         RoomAffluence.SetAffluence(johnnyTheyDidIt);
+        //Allow for the next round to begin
+        nextRoundConsentGiven = false;
     }
 }

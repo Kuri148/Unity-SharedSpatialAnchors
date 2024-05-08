@@ -53,6 +53,12 @@ MonoBehaviour:
   - BothPlayersPresentRPC
   - ClientLetsGoRPC
   - MasterClientLetsGoRPC
+  - BothPlayersConsentRPC
+  - ClientConsent
+  - DemandHideCanvasRPC
+  - DemandShowCanvas
+  - MasterConsent
+  - ShareCanvasPreparation
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
