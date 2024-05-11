@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+
 
 
 
@@ -41,6 +44,12 @@ public class RoomAffluence : MonoBehaviour, IAffluenceSubject
     }
 
     public void SetAffluence(bool isPositive)
+    {
+        SetAffluenceRPC(isPositive);
+    }
+
+    [PunRPC]
+    public void SetAffluenceRPC(bool isPositive)
     {
         if (isPositive)
         {
