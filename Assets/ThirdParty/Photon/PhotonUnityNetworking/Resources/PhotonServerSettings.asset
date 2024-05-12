@@ -49,6 +49,17 @@ MonoBehaviour:
   - SendSessionStart
   - CheckForLocalAnchors
   - OnColocatedAck
+  - BothPlayersConsentRPC
+  - BothPlayersPresentRPC
+  - ClientConsent
+  - ClientLetsGoRPC
+  - DemandHideCanvasRPC
+  - DemandShowCanvas
+  - MasterClientLetsGoRPC
+  - MasterConsent
+  - SetAffluenceRPC
+  - ShareCanvasPreparation
+  - ShowNetworkCapsule
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
