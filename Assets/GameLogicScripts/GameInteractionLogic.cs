@@ -173,7 +173,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     private void ChangeText(int textIndex, string newText)
     {
         
-        if ((textIndex == 0 || textIndex == 3) && CheckForAgreement() && HyperCanvasCollection.GetIsDuringRound() == true)
+        if ((textIndex == 1 || textIndex == 4) && CheckForAgreement() && HyperCanvasCollection.GetIsDuringRound() == true)
         {
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, textIndex, newText);
             CheckForConfirmation();
@@ -196,7 +196,6 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (masterAnswerText.text == clientAnswerText.text  && masterAnswerText.text != "" && clientAnswerText.text != "")
         {
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Agreement");
-            agreementText.text = "Agreement";
             return true;
         }
         else
@@ -229,7 +228,7 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (agreementText.text == "Agreement" && masterConfirmationText.text == "Ok" && clientConfirmationText.text == "Ok")
         {
             Debug.Log("Confirmation Entered");
-            confirmationText.text = "Confirmation";
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 7, "Confirmation");
             HyperCanvasCollection.SetIsDuringRound(false);
             DefinePlayersSayCanvasesAreDifferent();
             CheckForCorrectness();
