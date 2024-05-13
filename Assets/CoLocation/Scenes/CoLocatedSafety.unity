@@ -645,6 +645,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89786705}
   m_CullTransparentMesh: 1
+--- !u!198 &139717007 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5475556834274579027, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+  m_PrefabInstance: {fileID: 2090314282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &218626554
 GameObject:
   m_ObjectHideFlags: 0
@@ -9097,6 +9102,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 335311579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1112381733 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 861269727318304277, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+  m_PrefabInstance: {fileID: 2090314282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1153389891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8176058570174596337, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
@@ -10047,6 +10057,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2519953544252300547, guid: 44cf50d1a2e68b64791a3e3143ccda19, type: 3}
   m_PrefabInstance: {fileID: 1527739737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1576413374 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 157629315264156909, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+  m_PrefabInstance: {fileID: 2090314282}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1586808571
 GameObject:
@@ -11115,6 +11130,26 @@ PrefabInstance:
       propertyPath: hyperCanvasCollectionPhotonView
       value: 
       objectReference: {fileID: 2090314284}
+    - target: {fileID: 3093142752916643723, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 3093142752916643723, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 3093142752916643723, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 3093142752916643723, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 3093142752916643723, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 3332103335636429004, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11131,6 +11166,26 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 16502427}
+    - target: {fileID: 3496783882142273967, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 3496783882142273967, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 3496783882142273967, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 3496783882142273967, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 3496783882142273967, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 3638751671827901412, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11163,6 +11218,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4535306382249727243, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 4535306382249727243, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 4535306382249727243, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 4535306382249727243, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 4535306382249727243, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 4660806987550567045, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11191,6 +11266,26 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5638717761101096602, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 5638717761101096602, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 5638717761101096602, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 5638717761101096602, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 5638717761101096602, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 5674675377471852360, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11203,10 +11298,50 @@ PrefabInstance:
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 954699144}
+    - target: {fileID: 5748761514440843221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 5748761514440843221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 5748761514440843221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 5748761514440843221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 5748761514440843221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 6045485656335410266, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6320862666436478896, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 6320862666436478896, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 6320862666436478896, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 6320862666436478896, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 6320862666436478896, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 6353635600524999394, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11219,6 +11354,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6389004623879855719, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 6389004623879855719, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 6389004623879855719, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 6389004623879855719, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 6389004623879855719, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 6566611355126708949, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11251,6 +11406,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.552
       objectReference: {fileID: 0}
+    - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 8012992206266441587, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11263,6 +11438,46 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8119233839571091352, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 8119233839571091352, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 8119233839571091352, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 8119233839571091352, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 8119233839571091352, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
+    - target: {fileID: 8194913572138585217, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2001d9dde3251642903f0d0552eb447, type: 3}
+    - target: {fileID: 8194913572138585217, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f3b75c9053bc314e9f5d99c2e7c7df9, type: 3}
+    - target: {fileID: 8194913572138585217, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainParticles
+      value: 
+      objectReference: {fileID: 1576413374}
+    - target: {fileID: 8194913572138585217, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: lossParticles
+      value: 
+      objectReference: {fileID: 139717007}
+    - target: {fileID: 8194913572138585217, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: gainLossAudioSource
+      value: 
+      objectReference: {fileID: 1112381733}
     - target: {fileID: 8367903032959596970, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.13

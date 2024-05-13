@@ -69,11 +69,12 @@ public class GameInteractionLogic : MonoBehaviourPun
             ClearTexts(true);
             HyperCanvasCollection.DemandHideCanvas();
             HyperCanvasCollection.PrepareCanvas();
+            gesturePhotonView.RPC("ResetConsentFlags", RpcTarget.All);
         }
     }
     public bool AreThereTwoPlayers()
     {
-        //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
+        
         if (BothPlayersWantToMoveOn()) return true;
     
         //The following two bool flags are preemptory to the third bool flag.  If either of them are false, the third bool flag will be false.
@@ -92,11 +93,18 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (nextRoundMasterConsent && nextRoundClientConsent)
         {
             gesturePhotonView.RPC("BothPlayersConsentRPC", RpcTarget.All);
-            HyperCanvasCollection.PrepareCanvas();
             return true;
         }
         // Returns false if the two players are not present.
         return false;
+    }
+
+    [PunRPC]
+    public void ResetConsentFlags()
+    {
+        nextRoundMasterConsent = false;
+        nextRoundClientConsent = false;
+        nextRoundConsentGiven = false;
     }
 
     private bool BothPlayersWantToMoveOn()
@@ -112,12 +120,15 @@ public class GameInteractionLogic : MonoBehaviourPun
     public void MasterConsent()
     {
         nextRoundMasterConsent = true;
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 2, "Ready");
     }
 
     [PunRPC]
     public void ClientConsent()
     {
         nextRoundClientConsent = true;
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 5, "Ready");
+
     }
 
     [PunRPC]
