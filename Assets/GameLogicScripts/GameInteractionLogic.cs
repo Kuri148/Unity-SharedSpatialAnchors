@@ -74,30 +74,31 @@ public class GameInteractionLogic : MonoBehaviourPun
     public bool AreThereTwoPlayers()
     {
         //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
-        if (nextRoundConsentGiven)
-        {
-            return true;
-        }
+        if (BothPlayersWantToMoveOn) return true;
+    
+        //The following two bool flags are preemptory to the third bool flag.  If either of them are false, the third bool flag will be false.
         if (PhotonNetwork.IsMasterClient)
         {
             gesturePhotonView.RPC("MasterConsent", RpcTarget.All);
             Debug.Log("MasterClientWantsAgain");
-            return false;
         }
         if (!PhotonNetwork.IsMasterClient)
         {
             gesturePhotonView.RPC("ClientConsent", RpcTarget.All);
             Debug.Log("ClientWantsAgain");
-            return false;
         }
+
+        //this sets the bool flag in the first if statement.
         if (nextRoundMasterConsent && nextRoundClientConsent)
         {
             gesturePhotonView.RPC("BothPlayersConsentRPC", RpcTarget.All);
             HyperCanvasCollection.PrepareCanvas();
             return true;
         }
-        return true;
+        // Returns false if the two players are not present.
+        return false;
     }
+
     private bool BothPlayersWantToMoveOn()
     {
         if (masterStartNextText.text == clientStartNextText.text && masterStartNextText.text != "" && clientStartNextText.text != "")
