@@ -69,6 +69,7 @@ public class GameInteractionLogic : MonoBehaviourPun
             ClearTexts(true);
             HyperCanvasCollection.DemandHideCanvas();
             HyperCanvasCollection.PrepareCanvas();
+            +
         }
     }
     public bool AreThereTwoPlayers()
@@ -147,27 +148,18 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     public void VoteForSame()
     {
-        if(twoPlayersPresent)
-        {
-            MasterClientUIDiverter(0, "Same");
-            ShowNetworkCapsuleRPC();
-        }
+        MasterClientUIDiverter(0, "Same");
+        ShowNetworkCapsuleRPC();
     }
 
     public void VoteForDifferent()
     {
-        if(twoPlayersPresent)
-        {
-            MasterClientUIDiverter(0, "Different");
-        }
+        MasterClientUIDiverter(0, "Different");
     }
 
     public void ConfirmAnswer()
     {
-        if(twoPlayersPresent)
-        {
-            MasterClientUIDiverter(4, "Ok");
-        }
+        MasterClientUIDiverter(4, "Ok");
     }
 
     //answer is 0. confirmation is 1. agreement is 2. left confirmation is 3. 
