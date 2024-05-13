@@ -69,7 +69,6 @@ public class GameInteractionLogic : MonoBehaviourPun
             ClearTexts(true);
             HyperCanvasCollection.DemandHideCanvas();
             HyperCanvasCollection.PrepareCanvas();
-            +
         }
     }
     public bool AreThereTwoPlayers()
@@ -159,7 +158,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     public void ConfirmAnswer()
     {
-        MasterClientUIDiverter(4, "Ok");
+        MasterClientUIDiverter(1, "Ok");
     }
 
     //answer is 0. confirmation is 1. agreement is 2. left confirmation is 3. 
@@ -176,12 +175,18 @@ public class GameInteractionLogic : MonoBehaviourPun
         
         if ((textIndex == 0 || textIndex == 3) && CheckForAgreement() && HyperCanvasCollection.GetIsDuringRound() == true)
         {
-            gestureTexts[textIndex].text = newText;
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, textIndex, newText);
             CheckForConfirmation();
             return;
         }
-        gestureTexts[textIndex].text = newText;
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, textIndex, newText);
         CheckForAgreement();
+    }
+
+    [PunRPC]
+    public void ChangeTextRPC(int textIndex, string newText)
+    {
+        gestureTexts[textIndex].text = newText;
     }
 
 
@@ -190,6 +195,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     {
         if (masterAnswerText.text == clientAnswerText.text  && masterAnswerText.text != "" && clientAnswerText.text != "")
         {
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Agreement");
             agreementText.text = "Agreement";
             return true;
         }
@@ -248,13 +254,13 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (playersSayCanvasesAreDifferent == HyperCanvasCollection.GetIsDifferent())
         {
             Debug.Log("Correct");
-            correctIncorrectText.text = "Correct";
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Correct");
             johnnyTheyDidIt = true;
         }
         else
         {
             Debug.Log("Incorrect");
-            correctIncorrectText.text = "Incorrect";
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Incorrect");
             johnnyTheyDidIt = false;
         }
         RoomAffluence.SetAffluence(johnnyTheyDidIt);
