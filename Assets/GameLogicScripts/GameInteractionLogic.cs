@@ -218,19 +218,23 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private void ClearTexts(bool fullClear)
     {
-            agreementText.text = "";
-            gestureTexts[3].text = "";
-            gestureTexts[4].text = "";
-            gestureTexts[5].text = "";
-            if (fullClear)
-            {
-                gestureTexts[0].text = "";
-                gestureTexts[1].text = "";
-                gestureTexts[2].text = "";
-                gestureTexts[6].text = "";
-                gestureTexts[7].text = "";
-                gestureTexts[8].text = "";
-            }
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 2, "");
+        
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 5, "");
+
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 7, "");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "");
+
+        if (fullClear)
+        {
+            //masterAnswerText.text
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "");
+            //clientAnswerText.text
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "");
+        }
     }
 
     private void CheckForConfirmation()
