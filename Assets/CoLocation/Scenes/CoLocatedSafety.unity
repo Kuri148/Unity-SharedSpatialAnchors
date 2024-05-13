@@ -10630,6 +10630,10 @@ PrefabInstance:
       propertyPath: _transformConfig.FeatureThresholds
       value: 
       objectReference: {fileID: 11400000, guid: 039cf5a7424e1e046b79287e9375cf09, type: 2}
+    - target: {fileID: 2871790717490911407, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: hyperCanvasCollectionPhotonView
+      value: 
+      objectReference: {fileID: 2090314284}
     - target: {fileID: 3332103335636429004, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
