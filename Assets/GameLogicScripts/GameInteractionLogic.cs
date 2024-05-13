@@ -74,7 +74,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     public bool AreThereTwoPlayers()
     {
         //This is a bool flag that is set to true when both players are present.  After it is set, the code below will not run.
-        if (BothPlayersWantToMoveOn) return true;
+        if (BothPlayersWantToMoveOn()) return true;
     
         //The following two bool flags are preemptory to the third bool flag.  If either of them are false, the third bool flag will be false.
         if (PhotonNetwork.IsMasterClient)
@@ -105,10 +105,7 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     [PunRPC]
