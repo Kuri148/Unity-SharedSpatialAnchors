@@ -61,9 +61,11 @@ public class GameInteractionLogic : MonoBehaviourPun
     public void StartNextText()
     {
         //Round is not in progress
-        if (HyperCanvasCollection.GetIsDuringRound() == false) return;
+        Debug.Log("Is it during the round?" + HyperCanvasCollection.GetIsDuringRound());
+        if (HyperCanvasCollection.GetIsDuringRound() == true) return;
         //Both Players are present and consenting
         if (!TwoPlayerConsent()) return; 
+        Debug.Log("TwoPlayerConsent");
         //Both players are present and have said "Ready" 
         if (BothPlayersWantToMoveOn())
         {
