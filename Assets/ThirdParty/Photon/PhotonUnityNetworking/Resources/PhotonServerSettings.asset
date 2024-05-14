@@ -62,6 +62,9 @@ MonoBehaviour:
   - ShowNetworkCapsule
   - ChangeTextRPC
   - ResetConsentFlags
+  - DemandShowCanvasRPC
+  - SetIsDuringRoundRPC
+  - ShareCanvasPreparationRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

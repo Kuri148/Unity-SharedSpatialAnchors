@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ParticleAndNoiseManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] List<ParticleSystem> _particleSystems = new List<ParticleSystem>();
+    [SerializeField] List<AudioSource> _audioSources = new List<AudioSource>();
+
     void Start()
     {
+
+        
         
     }
 

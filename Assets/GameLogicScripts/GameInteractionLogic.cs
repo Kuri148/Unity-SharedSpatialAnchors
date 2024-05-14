@@ -35,6 +35,8 @@ public class GameInteractionLogic : MonoBehaviourPun
     [SerializeField] bool nextRoundConsentGiven = false;
     [SerializeField] bool nextRoundClientConsent = false;
     [SerializeField] bool nextRoundMasterConsent = false;
+
+    private bool isFirstRound = true;
     
     
     public GameObject NetworkCapsule;
@@ -58,26 +60,26 @@ public class GameInteractionLogic : MonoBehaviourPun
 //Starting and moving onto the next round
     public void StartNextText()
     {
-        if (!AreThereTwoPlayers()) return;
-        if (HyperCanvasCollection.GetIsDuringRound() == false)
-        {
-            MasterClientUIDiverter(2, "One More");
-        }
+        //Round is not in progress
+        if (HyperCanvasCollection.GetIsDuringRound() == false) return;
+        //Both Players are present and consenting
+        if (!TwoPlayerConsent()) return; 
+        //Both players are present and have said "Ready" 
         if (BothPlayersWantToMoveOn())
         {
             Debug.Log("BothPlayersWantToMoveOn");
             ClearTexts(true);
-            HyperCanvasCollection.DemandHideCanvas();
+
+            if (!isFirstRound) HyperCanvasCollection.DemandHideCanvas();
+            isFirstRound = false;
             HyperCanvasCollection.PrepareCanvas();
             gesturePhotonView.RPC("ResetConsentFlags", RpcTarget.All);
         }
     }
-    public bool AreThereTwoPlayers()
+    public bool TwoPlayerConsent()
     {
-        
-        if (BothPlayersWantToMoveOn()) return true;
-    
         //The following two bool flags are preemptory to the third bool flag.  If either of them are false, the third bool flag will be false.
+
         if (PhotonNetwork.IsMasterClient)
         {
             gesturePhotonView.RPC("MasterConsent", RpcTarget.All);
@@ -279,6 +281,6 @@ public class GameInteractionLogic : MonoBehaviourPun
         }
         RoomAffluence.SetAffluence(johnnyTheyDidIt);
         //Allow for the next round to begin
-        nextRoundConsentGiven = false;
+        gesturePhotonView.RPC("ResetConsentflags", RpcTarget.All);
     }
 }

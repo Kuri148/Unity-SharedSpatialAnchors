@@ -30,8 +30,14 @@ public class HyperCanvasCollection : MonoBehaviour
 
     public void SetIsDuringRound(bool value)
     {
-        _isDuringRound = value;
+        hyperCanvasCollectionPhotonView.RPC("SetIsDuringRoundRPC", RpcTarget.All, value);
     }
+
+    [PunRPC]
+    public void SetIsDuringRoundRPC(bool value)
+    {
+        _isDuringRound = value;
+    } 
 
     public bool GetIsDuringRound()
     {
@@ -52,6 +58,8 @@ public class HyperCanvasCollection : MonoBehaviour
         
     }
 
+//-----------------------------PREPARING CANVAS START-------------------------------------------------------------
+//Is called from GameInteractionLogic.cs and prepares the canvas for the players
     public void PrepareCanvas()
     {
         if (!_isDuringRound) //Make sure the players aren't in the middle of a round
@@ -77,14 +85,16 @@ public class HyperCanvasCollection : MonoBehaviour
                     count++;
                 }
             }
-            hyperCanvasCollectionPhotonView.RPC("ShareCanvasPreparation", RpcTarget.All, topic, isDifferent, firstCanvas, secondCanvas);
-            hyperCanvasCollectionPhotonView.RPC("DemandShowCanvas", RpcTarget.All);
+            //Calls the following two RPCS to make sure everyone has the same possible images and shows the appropriate images
+            hyperCanvasCollectionPhotonView.RPC("ShareCanvasPreparationRPC", RpcTarget.All, topic, isDifferent, firstCanvas, secondCanvas);
+            hyperCanvasCollectionPhotonView.RPC("DemandShowCanvasRPC", RpcTarget.All);
         }
-
     }
 
+
+    //This RPC is called to make sure everyone has the same possible images
     [PunRPC]
-    public void ShareCanvasPreparation(int topic, bool isDifferent, int firstCanvas, int secondCanvas)
+    public void ShareCanvasPreparationRPC(int topic, bool isDifferent, int firstCanvas, int secondCanvas)
     {
         this.topic = topic;
         this.isDifferent = isDifferent;
@@ -92,8 +102,9 @@ public class HyperCanvasCollection : MonoBehaviour
         this.secondCanvas = secondCanvas;
     }
 
+    //This RPC is called to show the appropriate images
     [PunRPC]
-    public void DemandShowCanvas()
+    public void DemandShowCanvasRPC()
     {
         if (!_isDuringRound)
         {
@@ -103,9 +114,16 @@ public class HyperCanvasCollection : MonoBehaviour
                 _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
             }
         }
-        _isDuringRound = true;
+        //This sets the bool flag to true so that the players can't be interrupted by another round
+        hyperCanvasCollectionPhotonView.RPC("SetIsDuringRoundRPC", RpcTarget.All, true);
     }
+//-----------------------------PREPARING CANVAS END-------------------------------------------------------------
 
+    public void DemandShowCanvas()
+    {
+        hyperCanvasCollectionPhotonView.RPC("DemandShowCanvasRPC", RpcTarget.All);
+    }
+//-----------------------------HIDING CANVAS START-------------------------------------------------------------
         public void DemandHideCanvas()
         {
             hyperCanvasCollectionPhotonView.RPC("DemandHideCanvasRPC", RpcTarget.All);
@@ -125,4 +143,5 @@ public class HyperCanvasCollection : MonoBehaviour
                 }
             }
         }
+//-----------------------------HIDING CANVAS END-------------------------------------------------------------
 }
