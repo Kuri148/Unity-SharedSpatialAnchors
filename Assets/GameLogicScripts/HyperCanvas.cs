@@ -22,21 +22,18 @@ public class HyperCanvas : MonoBehaviour
 
     public void ShowCanvas(int index, bool isSecond)
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (isSecond)
         {
-            if (isSecond)
-            {
-                Debug.Log("Showing canvas " + index);
-                _pages[index].transform.position += new Vector3(0, 2, 0);
-                _pages[index].SetActive(true);
-            }
+            Debug.Log("Showing canvas " + index);
+            _pages[index].transform.position += new Vector3(0, 2, 0);
+            _pages[index].SetActive(true);
         }
         else
-        if (!isSecond)
         {
             Debug.Log("Showing canvas " + index);
             _pages[index].SetActive(true);
         }
+
     }
 
     public void HideCanvas(int index, bool isSecond)
@@ -48,22 +45,23 @@ public class HyperCanvas : MonoBehaviour
         _pages[index].SetActive(false);
     }
 
-    public void RevealAnswer(int index, bool isSecond, bool isDifferent)
-    {
-        _pages[index].SetActive(true);
-        
+    public void RevealAnswer(int firstCanvas, int secondCanvas, bool isDifferent)
+    {   
         if (isDifferent)
         {
-            if (isSecond)
-            {
-                _pages[index].transform.position = differentPositionRight;
-                _pages[index].transform.localScale = new Vector3(.5f, .5f, 1f);
-            }
-            else
-            {
-                _pages[index].transform.position = differentPositionLeft;
-                _pages[index].transform.localScale = new Vector3(.5f, .5f, 1f);
-            }
+            _pages[firstCanvas].transform.position = differentPositionRight;
+            _pages[firstCanvas].transform.localScale = new Vector3(.5f, .5f, 1f);
+            _pages[firstCanvas].SetActive(true);
+
+            _pages[secondCanvas].transform.position = differentPositionLeft;
+            _pages[secondCanvas].transform.localScale = new Vector3(.5f, .5f, 1f);
+            _pages[secondCanvas].SetActive(true);
+        }
+        else
+        {
+            _pages[firstCanvas].transform.position = sharedPosition;
+            _pages[firstCanvas].transform.localScale = new Vector3(1, 1, 1);
+            _pages[firstCanvas].SetActive(true);
         }
     }
 }

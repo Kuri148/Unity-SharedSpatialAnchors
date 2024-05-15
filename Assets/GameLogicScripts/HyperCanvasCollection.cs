@@ -108,14 +108,24 @@ public class HyperCanvasCollection : MonoBehaviour
     {
         if (!_isDuringRound)
         {
-            _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
-            if (isDifferent)
+            if (!isDifferent) //if they are not different, everyone sees the same image
             {
-                _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
+                _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
             }
-        }
+            else  //if they are different, each person sees a different image
+            {
+                if (PhotonNetwork.IsMasterClient) //master sees the first image
+                {
+                    _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
+                }
+                else //client sees the second image
+                {
+                    _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
+                }
+            }
         //This sets the bool flag to true so that the players can't be interrupted by another round
-        hyperCanvasCollectionPhotonView.RPC("SetIsDuringRoundRPC", RpcTarget.All, true);
+            hyperCanvasCollectionPhotonView.RPC("SetIsDuringRoundRPC", RpcTarget.All, true);
+        }
     }
 //-----------------------------PREPARING CANVAS END-------------------------------------------------------------
 
@@ -155,10 +165,14 @@ public class HyperCanvasCollection : MonoBehaviour
     {
         if (!_isDuringRound)
         {
-            _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
+            
             if (isDifferent)
             {
-                _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
+                _hyperCanvases[topic].RevealAnswer(firstCanvas, secondCanvas, true);
+            }
+            else
+            {
+                _hyperCanvases[topic].RevealAnswer(firstCanvas, secondCanvas, false);
             }
         }
         //This sets the bool flag to true so that the players can't be interrupted by another round
