@@ -273,13 +273,13 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             Debug.Log("Correct");
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Correct");
-            johnnyTheyDidIt = true;
+            playersGotItRight = true;
         }
         else
         {
             Debug.Log("Incorrect");
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Incorrect");
-            johnnyTheyDidIt = false;
+            playersGotItRight = false;
         }
         gesturePhotonView.RPC("ChangeAffluenceValue", RpcTarget.All, playersGotItRight);
         //Allow for the next round to begin
