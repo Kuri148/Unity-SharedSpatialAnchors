@@ -264,7 +264,7 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             playersSayCanvasesAreDifferent = false;
         }
-    }
+    } 
 
     private void CheckForCorrectness()
     {
