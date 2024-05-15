@@ -268,17 +268,24 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private void CheckForCorrectness()
     {
+        
         bool playersGotItRight = false;
+        string feedback = "";
+        string state = "";
+        state = (HyperCanvasCollection.GetIsDifferent() == true)? "different" : "same";
+
         if (playersSayCanvasesAreDifferent == HyperCanvasCollection.GetIsDifferent())
         {
             Debug.Log("Correct");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Correct");
+            feedback = "Correct, " + state + "!";
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, feedback);
             playersGotItRight = true;
         }
         else
         {
             Debug.Log("Incorrect");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Incorrect");
+            feedback = "Incorrect, " + state + "!";
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, feedback);
             playersGotItRight = false;
         }
         gesturePhotonView.RPC("ChangeAffluenceValueRPC", RpcTarget.All, playersGotItRight);

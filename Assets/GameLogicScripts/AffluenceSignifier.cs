@@ -41,19 +41,19 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
             Debug.Log("Affluence for " + gameObject.name + "is greater than threshold.");
             gainParticles.transform.position = gameObject.transform.position;
             gainLossAudioSource.transform.position = gameObject.transform.position;
-            gainLossAudioSource.clip = gainClip;
+            //gainLossAudioSource.clip = gainClip;
             gainParticles.Play();
-            gainLossAudioSource.Play();
+            gainLossAudioSource.PlayOneShot(gainClip);
         }
         else if (prevState == true && curState == false)
         {
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             Debug.Log("Affluence for " + gameObject.name + "is lower than threshold.");
-            gainParticles.transform.position = gameObject.transform.position;
+            lossParticles.transform.position = gameObject.transform.position;
             gainLossAudioSource.transform.position = gameObject.transform.position;
-            gainLossAudioSource.clip = lossClip;
+            //gainLossAudioSource.clip = lossClip;
             lossParticles.Play();
-            gainLossAudioSource.Play();
+            gainLossAudioSource.PlayOneShot(lossClip);
         }
     }
 }
