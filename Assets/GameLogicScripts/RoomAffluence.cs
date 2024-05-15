@@ -45,12 +45,6 @@ public class RoomAffluence : MonoBehaviour, IAffluenceSubject
 
     public void SetAffluence(bool isPositive)
     {
-        SetAffluenceRPC(isPositive);
-    }
-
-    [PunRPC]
-    public void SetAffluenceRPC(bool isPositive)
-    {
         if (isPositive)
         {
             _affluence++;
@@ -60,6 +54,13 @@ public class RoomAffluence : MonoBehaviour, IAffluenceSubject
             _affluence--;
         }
         NotifyObservers();
+        //SetAffluenceRPC(isPositive);
     }
+    /*
+    [PunRPC]
+    public void SetAffluenceRPC(bool isPositive)
+    {
+
+    }*/
 }
 

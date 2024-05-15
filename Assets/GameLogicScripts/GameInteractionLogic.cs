@@ -256,7 +256,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private void DefinePlayersSayCanvasesAreDifferent()
     {
-        if (masterAnswerText.text == "Thumbs Down")
+        if (masterAnswerText.text == "Different")
         {
             playersSayCanvasesAreDifferent = true;
         }
@@ -268,7 +268,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private void CheckForCorrectness()
     {
-        bool johnnyTheyDidIt = false;
+        bool playersGotItRight = false;
         if (playersSayCanvasesAreDifferent == HyperCanvasCollection.GetIsDifferent())
         {
             Debug.Log("Correct");
@@ -281,9 +281,16 @@ public class GameInteractionLogic : MonoBehaviourPun
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Incorrect");
             johnnyTheyDidIt = false;
         }
-        RoomAffluence.SetAffluence(johnnyTheyDidIt);
+        gesturePhotonView.RPC("ChangeAffluenceValue", RpcTarget.All, playersGotItRight);
         //Allow for the next round to begin
         gesturePhotonView.RPC("ResetConsentflags", RpcTarget.All);
+        //Show the only or both pictures
         HyperCanvasCollection.DemandRevealAnswer();
+    }
+
+    [PunRPC]
+    public void ChangeAffluenceValueRPC(bool playersWereCorrect)
+    {
+        RoomAffluence.SetAffluence(playersWereCorrect);
     }
 }

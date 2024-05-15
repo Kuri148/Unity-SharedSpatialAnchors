@@ -25,7 +25,6 @@ public class HyperCanvas : MonoBehaviour
         if (isSecond)
         {
             Debug.Log("Showing canvas " + index);
-            _pages[index].transform.position += new Vector3(0, 2, 0);
             _pages[index].SetActive(true);
         }
         else
