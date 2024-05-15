@@ -11022,6 +11022,14 @@ PrefabInstance:
       propertyPath: _transformFeatureStateProvider
       value: 
       objectReference: {fileID: 1796423870}
+    - target: {fileID: 569096131725738497, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 569096131725738497, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 773343429622866423, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11034,6 +11042,14 @@ PrefabInstance:
       propertyPath: _transformFeatureStateProvider
       value: 
       objectReference: {fileID: 954699145}
+    - target: {fileID: 869754165465315710, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 869754165465315710, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 971315750893654587, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11070,6 +11086,14 @@ PrefabInstance:
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 954699144}
+    - target: {fileID: 1682767302924121286, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682767302924121286, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1701921364025044121, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11362,6 +11386,14 @@ PrefabInstance:
       propertyPath: gainLossAudioSource
       value: 
       objectReference: {fileID: 1112381733}
+    - target: {fileID: 6335344311744274221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335344311744274221, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6353635600524999394, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _hand
       value: 
@@ -11402,6 +11434,14 @@ PrefabInstance:
       propertyPath: _fingerFeatureStateProvider
       value: 
       objectReference: {fileID: 1796423869}
+    - target: {fileID: 6796324743219997027, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796324743219997027, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6925807324614685487, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11433,6 +11473,14 @@ PrefabInstance:
     - target: {fileID: 7901121491952094494, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953935874637678307, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953935874637678307, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7982003930151253104, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
       propertyPath: gainClip
@@ -11542,6 +11590,14 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 16502427}
+    - target: {fileID: 9157790613678891080, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionLeft.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157790613678891080, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
+      propertyPath: differentPositionRight.x
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4876746352785447191, guid: 069cba0e79984f04689bcb5e6f7c56f3, type: 3}
     m_RemovedGameObjects: []

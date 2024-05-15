@@ -75,7 +75,7 @@ public class GameInteractionLogic : MonoBehaviourPun
             if (!isFirstRound) HyperCanvasCollection.DemandHideCanvas();
             isFirstRound = false;
             HyperCanvasCollection.PrepareCanvas();
-            gesturePhotonView.RPC("ResetConsentFlags", RpcTarget.All);
+            gesturePhotonView.RPC("ResetConsentFlagsRPC", RpcTarget.All);
         }
     }
     public bool TwoPlayerConsent()
@@ -104,7 +104,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void ResetConsentFlags()
+    public void ResetConsentFlagsRPC()
     {
         nextRoundMasterConsent = false;
         nextRoundClientConsent = false;
@@ -281,9 +281,9 @@ public class GameInteractionLogic : MonoBehaviourPun
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, "Incorrect");
             playersGotItRight = false;
         }
-        gesturePhotonView.RPC("ChangeAffluenceValue", RpcTarget.All, playersGotItRight);
+        gesturePhotonView.RPC("ChangeAffluenceValueRPC", RpcTarget.All, playersGotItRight);
         //Allow for the next round to begin
-        gesturePhotonView.RPC("ResetConsentflags", RpcTarget.All);
+        gesturePhotonView.RPC("ResetConsentFlagsRPC", RpcTarget.All);
         //Show the only or both pictures
         HyperCanvasCollection.DemandRevealAnswer();
     }

@@ -66,6 +66,8 @@ MonoBehaviour:
   - SetIsDuringRoundRPC
   - ShareCanvasPreparationRPC
   - RevealAnswerRPC
+  - ChangeAffluenceValueRPC
+  - ResetConsentFlagsRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
