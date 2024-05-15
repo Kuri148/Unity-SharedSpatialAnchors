@@ -73,7 +73,7 @@ public class GameInteractionLogic : MonoBehaviourPun
             ClearTexts(true);
 
             if (!isFirstRound) HyperCanvasCollection.DemandHideCanvas();
-            isFirstRound = false;
+            
             HyperCanvasCollection.PrepareCanvas();
             gesturePhotonView.RPC("ResetConsentFlagsRPC", RpcTarget.All);
         }
@@ -139,6 +139,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     public void BothPlayersConsentRPC()
     {
         nextRoundConsentGiven = true;
+        isFirstRound = false;
     }
 
 //End of starting sequence

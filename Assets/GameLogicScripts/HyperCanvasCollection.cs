@@ -136,20 +136,21 @@ public class HyperCanvasCollection : MonoBehaviour
 //-----------------------------HIDING CANVAS START-------------------------------------------------------------
         public void DemandHideCanvas()
         {
-            hyperCanvasCollectionPhotonView.RPC("DemandHideCanvasRPC", RpcTarget.All);
+            hyperCanvasCollectionPhotonView.RPC("HideCanvasRPC", RpcTarget.All);
         }
 
         [PunRPC]
-        public void DemandHideCanvasRPC()
+        public void HideCanvasRPC()
         {
-            Debug.Log("DemandHideCanvas " + topic + " " + firstCanvas + " " + secondCanvas);
+            Debug.Log("HideCanvas " + topic + " " + firstCanvas + " " + secondCanvas);
             if (_isDuringRound == false)
             {
-                Debug.Log("DemandHideCanvas entered");
-                _hyperCanvases[topic].HideCanvas(firstCanvas, false);
+                Debug.Log("HideCanvas entered");
+                _hyperCanvases[topic].HideCanvas(firstCanvas);
                 if (isDifferent)
                 {
-                    _hyperCanvases[topic].HideCanvas(secondCanvas, true);
+                    Debug.Log("HideCanvas entered second");
+                    _hyperCanvases[topic].HideCanvas(secondCanvas);
                 }
             }
         }

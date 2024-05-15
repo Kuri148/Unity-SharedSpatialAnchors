@@ -36,7 +36,7 @@ public class HyperCanvas : MonoBehaviour
 
     }
 
-    public void HideCanvas(int index, bool isSecond)
+    public void HideCanvas(int index)
     {
         Debug.Log("Hiding canvas " + index);
 
