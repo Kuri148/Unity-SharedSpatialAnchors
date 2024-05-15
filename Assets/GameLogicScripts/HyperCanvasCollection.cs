@@ -144,4 +144,24 @@ public class HyperCanvasCollection : MonoBehaviour
             }
         }
 //-----------------------------HIDING CANVAS END-------------------------------------------------------------
+    
+    public void DemandRevealAnswer()
+    {
+        hyperCanvasCollectionPhotonView.RPC("RevealAnswerRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void RevealAnswerRPC()
+    {
+        if (!_isDuringRound)
+        {
+            _hyperCanvases[topic].ShowCanvas(firstCanvas, false);
+            if (isDifferent)
+            {
+                _hyperCanvases[topic].ShowCanvas(secondCanvas, true);
+            }
+        }
+        //This sets the bool flag to true so that the players can't be interrupted by another round
+        hyperCanvasCollectionPhotonView.RPC("SetIsDuringRoundRPC", RpcTarget.All, false);
+    }
 }

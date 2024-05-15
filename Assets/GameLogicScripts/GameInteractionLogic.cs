@@ -284,5 +284,6 @@ public class GameInteractionLogic : MonoBehaviourPun
         RoomAffluence.SetAffluence(johnnyTheyDidIt);
         //Allow for the next round to begin
         gesturePhotonView.RPC("ResetConsentflags", RpcTarget.All);
+        HyperCanvasCollection.DemandRevealAnswer();
     }
 }

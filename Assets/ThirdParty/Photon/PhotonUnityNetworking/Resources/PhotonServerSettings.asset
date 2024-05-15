@@ -65,6 +65,7 @@ MonoBehaviour:
   - DemandShowCanvasRPC
   - SetIsDuringRoundRPC
   - ShareCanvasPreparationRPC
+  - RevealAnswerRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
