@@ -40,7 +40,8 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
         curState = Affluence > affluenceThreshold;
         if (prevState == false && curState == true)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
+            //white sphere marker
+            //gameObject.GetComponent<MeshRenderer>().enabled = true;
             Debug.Log("Affluence for " + gameObject.name + "is greater than threshold.");
             gainParticles.transform.position = gameObject.transform.position;
             gainLossAudioSource.transform.position = gameObject.transform.position;
@@ -51,7 +52,8 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
         }
         else if (prevState == true && curState == false)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            //white sphere marker
+            //gameObject.GetComponent<MeshRenderer>().enabled = false;
             Debug.Log("Affluence for " + gameObject.name + "is lower than threshold.");
             lossParticles.transform.position = gameObject.transform.position;
             gainLossAudioSource.transform.position = gameObject.transform.position;
@@ -59,7 +61,10 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
             lossParticles.Play();
             gainLossAudioSource.PlayOneShot(lossClip);
             animal.SetActive(false);
-            animal.GetComponent<Animation>().Play("idle_1");
+            animal.GetComponent<Animation>().wrapMode = WrapMode.Loop;
+            animal.GetComponent<Animation>().Play();
+            //play animation on repeat
+            
         }
     }
 }

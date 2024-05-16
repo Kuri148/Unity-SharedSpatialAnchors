@@ -174,7 +174,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     public void ConfirmAnswer()
     {
-        MasterClientUIDiverter(1, "Ok");
+        MasterClientUIDiverter(1, "Confirmed");
     }
 
     //answer is 0. confirmation is 1. agreement is 2. left confirmation is 3. 
@@ -211,7 +211,7 @@ public class GameInteractionLogic : MonoBehaviourPun
     {
         if (masterAnswerText.text == clientAnswerText.text  && masterAnswerText.text != "" && clientAnswerText.text != "")
         {
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Agreement");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Confirm?");
             return true;
         }
         else
@@ -236,19 +236,19 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (fullClear)
         {
             //masterAnswerText.text
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "Same?");
             //clientAnswerText.text
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "Different?");
         }
     }
 
     private void CheckForConfirmation()
     {
         Debug.Log("CheckForConfirmation");
-        if (agreementText.text == "Agreement" && masterConfirmationText.text == "Ok" && clientConfirmationText.text == "Ok")
+        if (agreementText.text == "Confirm?" && masterConfirmationText.text == "Confirmed" && clientConfirmationText.text == "Confirmed")
         {
             Debug.Log("Confirmation Entered");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 7, "Confirmation");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Confirmed!");
             HyperCanvasCollection.SetIsDuringRound(false);
             DefinePlayersSayCanvasesAreDifferent();
             CheckForCorrectness();
