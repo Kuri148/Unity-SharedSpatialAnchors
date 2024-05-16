@@ -68,6 +68,7 @@ MonoBehaviour:
   - RevealAnswerRPC
   - ChangeAffluenceValueRPC
   - ResetConsentFlagsRPC
+  - HideCanvasRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

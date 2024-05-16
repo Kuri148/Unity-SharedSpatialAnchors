@@ -19,6 +19,7 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
     [SerializeField] AudioSource gainLossAudioSource;
     [SerializeField] AudioClip gainClip;
     [SerializeField] AudioClip lossClip;
+    [SerializeField] GameObject animal;
     public float Affluence
     {
         get { return _affluence; }
@@ -28,6 +29,8 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
     void Start()
     {
         roomAffluence.RegisterObserver(this);
+        animal = gameObject.transform.GetChild(0).gameObject;
+        animal.SetActive(false);
     }
 
     public void UpdateAffluence(float affluence)
@@ -42,6 +45,7 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
             gainParticles.transform.position = gameObject.transform.position;
             gainLossAudioSource.transform.position = gameObject.transform.position;
             //gainLossAudioSource.clip = gainClip;
+            animal.SetActive(true);
             gainParticles.Play();
             gainLossAudioSource.PlayOneShot(gainClip);
         }
@@ -54,6 +58,8 @@ public class AffluenceSignifier : MonoBehaviour , IAffluenceObserver
             //gainLossAudioSource.clip = lossClip;
             lossParticles.Play();
             gainLossAudioSource.PlayOneShot(lossClip);
+            animal.SetActive(false);
+            animal.GetComponent<Animation>().Play("idle_1");
         }
     }
 }

@@ -53,6 +53,10 @@ public class RoomAffluence : MonoBehaviour, IAffluenceSubject
         {
             _affluence--;
         }
+        if (_affluence < 0)
+        {
+            _affluence = 0;
+        }
         NotifyObservers();
         //SetAffluenceRPC(isPositive);
     }
