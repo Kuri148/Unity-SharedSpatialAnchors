@@ -138,6 +138,8 @@ public class GameInteractionLogic : MonoBehaviourPun
     [PunRPC]
     public void BothPlayersConsentRPC()
     {
+        gestureTexts[1].text = "Choose...";
+        gestureTexts[4].text = "Choose...";
         nextRoundConsentGiven = true;
         isFirstRound = false;
     }
@@ -236,9 +238,9 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (fullClear)
         {
             //masterAnswerText.text
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "Same?");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "Same or diffent?");
             //clientAnswerText.text
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "Different?");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "Different or same?");
         }
     }
 
@@ -249,6 +251,8 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             Debug.Log("Confirmation Entered");
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Confirmed!");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "Start/Next");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "Start/Next");
             HyperCanvasCollection.SetIsDuringRound(false);
             DefinePlayersSayCanvasesAreDifferent();
             CheckForCorrectness();
