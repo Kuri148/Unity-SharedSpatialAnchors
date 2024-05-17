@@ -113,7 +113,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private bool BothPlayersWantToMoveOn()
     {
-        if (masterStartNextText.text == clientStartNextText.text && masterStartNextText.text != "" && clientStartNextText.text != "")
+        if (masterAnswerText.text == clientAnswerText.text && masterAnswerText.text != "" && clientAnswerText.text != "")
         {
             return true;
         }
@@ -138,8 +138,8 @@ public class GameInteractionLogic : MonoBehaviourPun
     [PunRPC]
     public void BothPlayersConsentRPC()
     {
-        gestureTexts[1].text = "Is the picture you are looking at the";
-        gestureTexts[4].text = "Is the picture you are looking at the";
+        gestureTexts[1].text = "Choose:";
+        gestureTexts[4].text = "Choose:";
         nextRoundConsentGiven = true;
         isFirstRound = false;
     }
