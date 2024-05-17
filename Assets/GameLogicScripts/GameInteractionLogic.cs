@@ -124,22 +124,22 @@ public class GameInteractionLogic : MonoBehaviourPun
     public void MasterConsent()
     {
         nextRoundMasterConsent = true;
-        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 2, "Ready");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "Ready");
     }
 
     [PunRPC]
     public void ClientConsent()
     {
         nextRoundClientConsent = true;
-        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 5, "Ready");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "Ready");
 
     }
 
     [PunRPC]
     public void BothPlayersConsentRPC()
     {
-        gestureTexts[1].text = "Choose...";
-        gestureTexts[4].text = "Choose...";
+        gestureTexts[1].text = "Is the picture you are looking at the";
+        gestureTexts[4].text = "Is the picture you are looking at the";
         nextRoundConsentGiven = true;
         isFirstRound = false;
     }
@@ -251,8 +251,8 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             Debug.Log("Confirmation Entered");
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Confirmed!");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "Start/Next");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "Start/Next");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "Hit Start/Next");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "Hit Start/Next");
             HyperCanvasCollection.SetIsDuringRound(false);
             DefinePlayersSayCanvasesAreDifferent();
             CheckForCorrectness();
@@ -283,14 +283,14 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             Debug.Log("Correct");
             feedback = "Correct, " + state + "!";
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, feedback);
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, feedback);
             playersGotItRight = true;
         }
         else
         {
             Debug.Log("Incorrect");
             feedback = "Incorrect, " + state + "!";
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 8, feedback);
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, feedback);
             playersGotItRight = false;
         }
         gesturePhotonView.RPC("ChangeAffluenceValueRPC", RpcTarget.All, playersGotItRight);
