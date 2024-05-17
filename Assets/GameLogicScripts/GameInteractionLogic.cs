@@ -140,6 +140,10 @@ public class GameInteractionLogic : MonoBehaviourPun
     {
         gestureTexts[1].text = "Choose:";
         gestureTexts[4].text = "Choose:";
+        
+        gestureTexts[0].text = "Same or diffent?";
+        gestureTexts[3].text = "Different or same?";
+
         nextRoundConsentGiven = true;
         isFirstRound = false;
     }
@@ -251,8 +255,8 @@ public class GameInteractionLogic : MonoBehaviourPun
         {
             Debug.Log("Confirmation Entered");
             gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 6, "Confirmed!");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "Hit Start/Next");
-            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "Hit Start/Next");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 1, "Start/Next");
+            gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 4, "Start/Next");
             HyperCanvasCollection.SetIsDuringRound(false);
             DefinePlayersSayCanvasesAreDifferent();
             CheckForCorrectness();
