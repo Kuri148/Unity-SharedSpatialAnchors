@@ -140,9 +140,9 @@ public class GameInteractionLogic : MonoBehaviourPun
     {
         gestureTexts[1].text = "Choose:";
         gestureTexts[4].text = "Choose:";
-        
-        gestureTexts[0].text = "Same or diffent?";
-        gestureTexts[3].text = "Different or same?";
+
+        //gestureTexts[0].text = "Same or diffent?";
+        //gestureTexts[3].text = "Different or same?";
 
         nextRoundConsentGiven = true;
         isFirstRound = false;
