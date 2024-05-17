@@ -57,7 +57,7 @@ public class GameInteractionLogic : MonoBehaviourPun
         gestureTexts[8] = correctIncorrectText;
     }
 
-//Starting and moving onto the next round
+//Starting and moving onto the next round ////
     public void StartNextText()
     {
         //Round is not in progress
