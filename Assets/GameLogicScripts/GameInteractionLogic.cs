@@ -70,12 +70,13 @@ public class GameInteractionLogic : MonoBehaviourPun
         if (BothPlayersWantToMoveOn())
         {
             Debug.Log("BothPlayersWantToMoveOn");
-            ClearTexts(true);
+            
 
             if (!isFirstRound) HyperCanvasCollection.DemandHideCanvas();
             
             HyperCanvasCollection.PrepareCanvas();
             gesturePhotonView.RPC("ResetConsentFlagsRPC", RpcTarget.All);
+            ClearTexts(true);
         }
     }
     public bool TwoPlayerConsent()
@@ -113,7 +114,7 @@ public class GameInteractionLogic : MonoBehaviourPun
 
     private bool BothPlayersWantToMoveOn()
     {
-        if (masterAnswerText.text == clientAnswerText.text && masterAnswerText.text != "" && clientAnswerText.text != "")
+        if (masterStartNextText.text == clientStartNextText.text && masterStartNextText.text != "" && clientStartNextText.text != "")
         {
             return true;
         }
@@ -124,14 +125,14 @@ public class GameInteractionLogic : MonoBehaviourPun
     public void MasterConsent()
     {
         nextRoundMasterConsent = true;
-        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 0, "Ready");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 2, "Ready");
     }
 
     [PunRPC]
     public void ClientConsent()
     {
         nextRoundClientConsent = true;
-        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 3, "Ready");
+        gesturePhotonView.RPC("ChangeTextRPC", RpcTarget.All, 5, "Ready");
 
     }
 
